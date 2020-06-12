@@ -1,4 +1,4 @@
-package com.example.app.todoapp;
+package com.example.todoapp.todoapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
