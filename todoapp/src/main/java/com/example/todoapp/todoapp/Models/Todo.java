@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -17,13 +18,10 @@ import java.util.Date;
 @Setter
 @ToString
 @NoArgsConstructor
+@Document(collection = "todos")
 
 public class Todo {
 
-    Todo()
-    {
-
-    }
 
 
     public Todo(String id, @Size(max = 200) @NotBlank String title, Boolean completed, Date createdAt) {

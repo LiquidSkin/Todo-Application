@@ -11,6 +11,7 @@ import java.util.*;
 
 @RestController
 @CrossOrigin("*")
+@RequestMapping("/api")
 public class TodoController {
 
     @Autowired
@@ -39,10 +40,15 @@ public class TodoController {
                     return ResponseEntity.ok().body(oldTodo);
                 }).orElse(ResponseEntity.notFound().build());
     }
-    @DeleteMapping("/todo")
-    ResponseEntity<Todo> deleteTask(@Valid @RequestBody Todo todo, @PathVariable String id)
+    @DeleteMapping("/todo/{id}")
+    ResponseEntity<?> deleteTask(@PathVariable String id)
     {
-        
+        return todoRepository.findById(id).map(
+                todo -> {
+                  todoRepository.delete(todo);
+                  return ResponseEntity.ok().build();
+
+                }).orElse(ResponseEntity.notFound().build());
     }
 
 }
